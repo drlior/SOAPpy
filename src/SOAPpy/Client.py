@@ -96,13 +96,13 @@ class SOAPAddress:
             path = '/'
 
         if proto not in ('http', 'https', 'httpg'):
-            raise IOError, "unsupported SOAP protocol"
+            raise IOError("unsupported SOAP protocol")
         if proto == 'httpg' and not config.GSIclient:
-            raise AttributeError, \
-                  "GSI client not supported by this Python installation"
+            raise AttributeError(
+                  "GSI client not supported by this Python installation")
         if proto == 'https' and not config.SSLclient:
-            raise AttributeError, \
-                "SSL client not supported by this Python installation"
+            raise AttributeError(
+                "SSL client not supported by this Python installation")
 
         self.user,host = urllib.splituser(host)
         self.proto = proto
@@ -154,7 +154,7 @@ class HTTPTransport:
             
 
     def __init__(self):
-        self.cookies = Cookie.SimpleCookie();
+        self.cookies = Cookie.SimpleCookie()
 
     def getNS(self, original_namespace, data):
         """Extract the (possibly extended) namespace from the returned
@@ -548,7 +548,7 @@ class SOAPProxy:
                         
         def __getattr__(self, name):
             if name == '__del__':
-                raise AttributeError, name
+                raise AttributeError(name)
             if self.__name[0] == "_":
                 # Don't nest method if it is a directive
                 return self.__class__(self.__call, name, self.__ns,
